@@ -1,11 +1,11 @@
 #ifndef BANKACCOUNT
 #define BANKACCOUNT	
-
+#include <string>
 class bankaccount {
 	public:
 		void display();
-		void withdraw(double amount);
-		void deposit(double amount);
+		void withdrawMoney(double amount);
+		void depositMoney(double amount);
 
 		bankaccount(float balance, std::string name, int number): balance(balance), name(name), number(number){}
 	

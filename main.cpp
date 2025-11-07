@@ -1,47 +1,55 @@
-#include "bankAccount.h"
+#include "bankaccount.h"
+#include "functions.h"
 #include <iostream>
 #include <fstream>
+#include <vector>
 
-int main(){
-	std::ifstream inf {"accounts.txt"};
-	if(!inf){
-		std::ofstream ouf{"accounts.txt"};
-		ouf.close();
-	}
+int main(){	
+	std::ifstream inf { "list.txt" };
 	
 	float balance;
 	std::string name;
 	int number;
 
 	decryptList();
-
-	//take account info from list and assign to variables
+	
+	std::string line;
+	std::vector<std::string> lines = {};
+	while (inf >> line){
+		lines.push_back(line);
+	}
+	inf.close();
+	
+	lines[0].pop_back();
+	balance = std::stof(lines[0]);
+	name = lines[1];
+	number = std::stoi(lines[2]);	
 
 	bankaccount acc1(balance, name, number);
 	int run = 1;
 	int mode;
-	std::cin >> mode;
-	while (run){	
+	while (1){	
+		std::cin >> mode;
 		switch (mode){
 			default:
-				run = 0;
-				break;
+				encryptList();
+				return 0;
 			case 1:
-				createAccount();
+				std::cout << "hello\n";
+//				createAccount();
 				break;
 			case 2:
-				depositMoney();
+				std::cout << "hello\n";
+//				depositMoney();
 				break;
 			case 3:
-				withdrawMoney();
+				std::cout << "hello\n";
+//				withdrawMoney();
 				break;
 			case 4:
-				checkBalance();
+				std::cout << "hello\n";
+				acc1.display();
 				break;
 		}
 	}
-
-	encryptList();
-	
-	return 0;
 }
