@@ -9,12 +9,12 @@ void bankaccount::display(){
 		
 }
 
-void bankaccount::withdrawMoney(double amount){
+void bankaccount::withdrawMoney(int amount){
 	//check if funds are sufficient
 	//withdraw
 }
 
-void bankaccount::depositMoney(double amount){
+void bankaccount::depositMoney(int amount){
 	//check if funds are sufficient
 	//deposit
 }

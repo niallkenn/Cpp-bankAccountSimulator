@@ -4,13 +4,13 @@
 class bankaccount {
 	public:
 		void display();
-		void withdrawMoney(double amount);
-		void depositMoney(double amount);
+		void withdrawMoney(int amount);
+		void depositMoney(int amount);
 
-		bankaccount(float balance, std::string name, int number): balance(balance), name(name), number(number){}
+		bankaccount(int balance, std::string name, int number): balance(balance), name(name), number(number){}
 	
 	private:
-		float balance;
+		int balance;
 		std::string name;
 		int number;
 };

@@ -5,25 +5,24 @@
 #include <vector>
 
 int main(){	
-	std::ifstream inf { "list.txt" };
 	
-	float balance;
+	int balance;
 	std::string name;
 	int number;
 
 	decryptList();
+	std::ifstream inf { "list.txt" };
 	
 	std::string line;
 	std::vector<std::string> lines = {};
-	while (inf >> line){
-		lines.push_back(line);
+	while (std::getline(inf, line)){
+		if(!line.empty()) lines.push_back(line);
 	}
 	inf.close();
 	
-	lines[0].pop_back();
-	balance = std::stof(lines[0]);
 	name = lines[1];
-	number = std::stoi(lines[2]);	
+	balance = std::stoi(lines[0]);
+	number = std::stoi(lines[2]);
 
 	bankaccount acc1(balance, name, number);
 	int run = 1;
