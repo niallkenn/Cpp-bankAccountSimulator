@@ -1,4 +1,5 @@
 #include "bankaccount.h"
+#include "functions.h"
 #include <iostream>
 
 void bankaccount::display(){

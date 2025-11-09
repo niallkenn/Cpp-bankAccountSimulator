@@ -3,5 +3,7 @@
 
 void encryptList();
 void decryptList();
+void openAccount();
+void createAccount();
 
 #endif
