@@ -74,7 +74,51 @@ void createAccount(){
 }
 
 void openAccount(){
+	std::cin.ignore();
+	std::ifstream inf { "list.txt" };
+	std::vector<std::string> lines;
+	std::string line;
+	while(std::getline(inf, line)) {
+		if (!line.empty()) lines.push_back(line);
+	}
 
-}
+	inf.close();
 
+	if (size(lines) == 0){
+		std::cout << "Create an account first\n";
+		return;
+	}
 	
+	int index = 1;
+
+	for (int i = 0; i < size(lines); i++){
+		if (i % 3 == 0){
+			std::cout << index << ". " << lines[i] << std::endl;
+		index++;
+		}
+	}
+	index--;
+	std::cout << "Choose account:\n";
+	int chooseacc;
+	std::string numberentered;
+	std::cin >> chooseacc;
+	
+	if (chooseacc > index || chooseacc < 1){
+		std::cout << "Number out of range\n";
+		return;
+	}
+	
+	std::string namechosen = lines[3*index-3];
+	std::string accnumber = lines[3*index-1];
+
+	std::cout << "Enter account number for: " << namechosen << "\n";
+	std::cin >> numberentered;
+
+	if (numberentered != accnumber){
+		std::cout << "Invalid account number\n";
+		return;
+	} else {
+		// account opened !!!!!!!!
+ 	}
+	return;
+}
