@@ -118,7 +118,28 @@ void openAccount(){
 		std::cout << "Invalid account number\n";
 		return;
 	} else {
-		// account opened !!!!!!!!
- 	}
-	return;
+		std::cout << "Account opened\n";
+		while (1){
+			int functionAcc = functionAccount();
+			if (functionAcc == 1){
+				std::cin.ignore();
+				return;
+ 			}
+		}
+	}
+}
+
+int functionAccount(){
+	
+	int mode;
+	std::cout << "Choose action\n[1] Show balance\n[Other] Exit account\n";
+	std::cin >> mode;
+
+	switch (mode){
+		default:
+			return 1;
+		case 1:
+			std::cout << "Display balance\n";
+	}
+	return 10;
 }

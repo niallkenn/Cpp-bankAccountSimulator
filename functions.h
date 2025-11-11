@@ -5,5 +5,7 @@ void encryptList();
 void decryptList();
 void openAccount();
 void createAccount();
+void openAccount();
+int functionAccount();
 
 #endif
