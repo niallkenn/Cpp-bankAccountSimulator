@@ -1,11 +1,13 @@
 #ifndef FUNCTIONS
 #define FUNCTIONS
 
+#include <string>
+
 void encryptList();
 void decryptList();
 void openAccount();
 void createAccount();
 void openAccount();
-void functionAccount();
+void functionAccount(std::string balance, std::string name, std::string number);
 
 #endif

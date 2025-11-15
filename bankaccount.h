@@ -7,12 +7,12 @@ class bankaccount {
 		void withdrawMoney(int amount);
 		void depositMoney(int amount);
 
-		bankaccount(int balance, std::string name, int number): balance(balance), name(name), number(number){}
+		bankaccount(std::string balance, std::string name, std::string number): balance(balance), name(name), number(number){}
 	
 	private:
-		int balance;
+		std::string balance;
 		std::string name;
-		int number;
+		std::string number;
 };
 
 #endif

@@ -128,12 +128,13 @@ void openAccount(){
 		return;
 	} else {
 		std::cout << "Account opened\n";
-		functionAccount();
+		functionAccount(namechosen, accnumber, lines[3*index-2]);
 	}
 	return;
 }
 
-void functionAccount(){
+void functionAccount(std::string name, std::string number, std::string balance){
+	bankaccount acc(balance, name, number);
 	while(1){
 		int mode;
 		std::cout << "Choose action\n[1] Show balance\n[Other] Exit account\n";
@@ -151,7 +152,7 @@ void functionAccount(){
 			default:
 				return;
 			case 1:
-				std::cout << "Display balance\n";
+				acc.display();
 				break;
 		}
 	}
