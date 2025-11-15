@@ -3,8 +3,11 @@
 #include <ctime>
 #include <cstdlib>
 #include <iostream>
+#include <limits>
 #include <fstream>
 #include <vector>
+
+std::string globalbalance = "0"; 
 
 void encryptList(){
 	std::ifstream inf { "list.txt" };
@@ -68,7 +71,7 @@ void createAccount(){
 
 	std::ofstream ouf { "list.txt", std::ios::app };
 	ouf << name << "\n";	
-	ouf << 0 << "\n";
+	ouf << 10000 << "\n";//starting balance
 	ouf << accnumber << "\n";
 	ouf.close();
 	return;
@@ -130,29 +133,44 @@ void openAccount(){
 		std::cout << "Account opened\n";
 		functionAccount(namechosen, accnumber, lines[3*index-2]);
 	}
-	return;
+	
+	lines[3*index-2] = globalbalance;
+	remove("list.txt");
+
+	std::ofstream ouf { "list.txt" };
+	for (int i=0;i<size(lines);i++){
+		ouf << lines[i] << std::endl;
+	}
+	return;	
 }
 
 void functionAccount(std::string name, std::string number, std::string balance){
 	bankaccount acc(balance, name, number);
 	while(1){
 		int mode;
-		std::cout << "Choose action\n[1] Show balance\n[Other] Exit account\n";
+		std::cout << "Choose action\n[1] Show balance\n[2] Deposit money\n[3] Withdraw money\n[Other] Exit account\n";
 		std::cin >> mode;
 		
 		if(std::cin.fail()){
 			std::cin.clear();
-			std::cin.ignore();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			globalbalance = acc.getBalance();
 			return;
 		}
 
 		std::cin.ignore();
-
 		switch (mode){
 			default:
+				globalbalance = acc.getBalance();
 				return;
 			case 1:
-				acc.display();
+				std::cout << "Account balance: " << acc.getBalance() << "\n";
+				break;
+			case 2:
+				acc.deposit();
+				break;
+			case 3:
+				acc.withdraw();
 				break;
 		}
 	}

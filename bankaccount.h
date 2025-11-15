@@ -3,10 +3,11 @@
 #include <string>
 class bankaccount {
 	public:
-		void display();
-		void withdrawMoney(int amount);
-		void depositMoney(int amount);
-
+		std::string getBalance();
+		void withdraw();
+		void deposit();
+		void withdrawAmount(int amount);
+		void depositAmount(int amount);
 		bankaccount(std::string balance, std::string name, std::string number): balance(balance), name(name), number(number){}
 	
 	private:

@@ -1,19 +1,52 @@
 #include "bankaccount.h"
 #include "functions.h"
 #include <iostream>
+#include <string>
 
-void bankaccount::display(){
-	//display account details
-	std::cout << "Account balance: " << balance << "\n";
+std::string bankaccount::getBalance(){
+	return balance;
 }
 
-void bankaccount::withdrawMoney(int amount){
+void bankaccount::withdrawAmount(int amount){
+	int bal = std::stoi(balance);
+	bal -= amount;
+	balance = std::to_string(bal);
+}
+
+void bankaccount::depositAmount(int amount){
+	int bal = std::stoi(balance);
+	bal += amount;
+	balance = std::to_string(bal);
+}
+	
+void bankaccount::withdraw(){
+	int accbalance = stoi(balance);
+	std::cout << "Amount: ";
+	
+	std::string amount;
+	int iamount;	
+	try {
+		std::getline(std::cin, amount);
+		iamount = stoi(amount);
+	} catch(std::invalid_argument&){
+		std::cout << "Invalid input\n";
+		return;
+	}
+
+	if (iamount > accbalance){
+		std::cout << "Insufficient funds\n";
+		return;
+	}else{
+		withdrawAmount(iamount);
+	}
+
+	return;
 	//check if funds are sufficient
 	//withdraw
 }
 
-void bankaccount::depositMoney(int amount){
-	//check if funds are sufficient
+void bankaccount::deposit(){
+	//check if funds are sufficient	
 	//deposit
 }
 
