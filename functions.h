@@ -6,6 +6,6 @@ void decryptList();
 void openAccount();
 void createAccount();
 void openAccount();
-int functionAccount();
+void functionAccount();
 
 #endif

@@ -18,13 +18,16 @@ int main(){
 		std::cout << "[1] Create account\n[2] Open account\n[else] Exit\n";
 		std::cin >> mode;
 		
-		if (mode == 1){
-			createAccount();
-		}else if (mode == 2){
-			openAccount();
-		}else {
-			encryptList();
-			return 0;
+		switch (mode){
+			default:
+				encryptList();
+				return 0;	
+			case 1:
+				createAccount();
+				break;
+			case 2:
+				openAccount();
+				break;
 		}
 	}
 }

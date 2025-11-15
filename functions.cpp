@@ -70,7 +70,8 @@ void createAccount(){
 	ouf << name << "\n";	
 	ouf << 0 << "\n";
 	ouf << accnumber << "\n";
-	ouf.close(); 
+	ouf.close();
+	return;
 }
 
 void openAccount(){
@@ -99,11 +100,19 @@ void openAccount(){
 	}
 	index--;
 	std::cout << "Choose account:\n";
-	int chooseacc;
+	std::string chooseacc;
 	std::string numberentered;
 	std::cin >> chooseacc;
 	
-	if (chooseacc > index || chooseacc < 1){
+	int chosen;
+	try {
+		chosen = std::stoi(chooseacc);
+	} catch(std::invalid_argument&){
+		std::cout << "Invalid input\n";
+		return;
+	}
+
+	if (chosen > index || chosen < 1){
 		std::cout << "Number out of range\n";
 		return;
 	}
@@ -113,33 +122,37 @@ void openAccount(){
 
 	std::cout << "Enter account number for: " << namechosen << "\n";
 	std::cin >> numberentered;
-
+	std::cin.ignore();
 	if (numberentered != accnumber){
 		std::cout << "Invalid account number\n";
 		return;
 	} else {
 		std::cout << "Account opened\n";
-		while (1){
-			int functionAcc = functionAccount();
-			if (functionAcc == 1){
-				std::cin.ignore();
-				return;
- 			}
-		}
+		functionAccount();
 	}
+	return;
 }
 
-int functionAccount(){
-	
-	int mode;
-	std::cout << "Choose action\n[1] Show balance\n[Other] Exit account\n";
-	std::cin >> mode;
+void functionAccount(){
+	while(1){
+		int mode;
+		std::cout << "Choose action\n[1] Show balance\n[Other] Exit account\n";
+		std::cin >> mode;
+		
+		if(std::cin.fail()){
+			std::cin.clear();
+			std::cin.ignore();
+			return;
+		}
 
-	switch (mode){
-		default:
-			return 1;
-		case 1:
-			std::cout << "Display balance\n";
+		std::cin.ignore();
+
+		switch (mode){
+			default:
+				return;
+			case 1:
+				std::cout << "Display balance\n";
+				break;
+		}
 	}
-	return 10;
 }
