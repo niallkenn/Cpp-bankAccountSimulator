@@ -46,8 +46,25 @@ void bankaccount::withdraw(){
 }
 
 void bankaccount::deposit(){
-	//check if funds are sufficient	
-	//deposit
+	std::cout << "Amount: ";
+	std::string amount;
+	int iamount;
+	try {	
+		std::getline(std::cin, amount);
+		iamount = stoi(amount);
+	} catch(std::invalid_argument&){
+		std::cout << "Invalid input\n";
+		return;
+	}
+
+	if (iamount < otherbalances(name)){
+		std::cout << "Insufficient funds\n";
+		return;
+	} else {
+		depositAmount(iamount);
+	}
+
+	return;
 }
 
 

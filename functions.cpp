@@ -63,7 +63,10 @@ void createAccount(){
 	std::cout << "Account name: ";
 	std::cin.ignore();
 	std::getline(std::cin, name);
-
+	if(name.empty()){
+		std::cout << "Empty name\n";
+		return;
+	}
 	std::srand(std::time(0));	
 	int accnumber = std::rand() % 1000001;
 	std::cout << "Your account number is: " << accnumber;
@@ -175,3 +178,31 @@ void functionAccount(std::string name, std::string number, std::string balance){
 		}
 	}
 }
+
+int otherbalances(std::string name){
+	std::ifstream inf { "list.txt" };
+        std::vector<std::string> lines;
+        std::string line;
+        while(std::getline(inf, line)) {
+                if (!line.empty()) lines.push_back(line);
+        }
+
+        inf.close();
+
+	std::vector<std::string> balances ={};
+
+	for (int i=0;i<size(lines);i++){
+		if (i%3==0){
+			if(lines[i] != name) balances.push_back(lines[i+1]);
+		}
+	}
+
+	int total = 0;
+		
+	for (int i=0;i<size(balances); i++){
+		total+=stoi(balances[i]);
+	}
+
+	return total;
+}
+
